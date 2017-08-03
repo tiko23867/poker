@@ -1,8 +1,8 @@
 function bet()
 {
 	//var player = +($('#pmon').text());
-	var pMon = playerOne.money;
-	var oMon = playerTwo.money;
+	var pMon = playerOne.getMoney;
+	var oMon = playerTwo.getMoney;
 	var pot = +($('#pot').text());
 
 	pMon -= 100;
@@ -41,9 +41,6 @@ function flop()
 
 function end()
 {
-//console.log(cards[0].value)
-//console.log(playerOne.hand[0].value);
-//console.log(cards)
 var pionts_playerOne = 0;
 var pionts_playerTwo = 0;
 
@@ -62,36 +59,36 @@ var pionts_playerTwo = 0;
 	}
 
 	var pot = +($('#pot').text());
-	console.log(pot)
 
 	if (pionts_playerOne > pionts_playerTwo)
 	{
 		alert("Player 1 wins!")
-		pot = playerOne.chips + pot;
-		playerOne.money = pot;
+		pot = playerOne.getMoney + pot;
+		playerOne.setMoney = pot;
 	}
 
 	else if (pionts_playerOne < pionts_playerTwo)
 	{
 		alert("Player 2 wins!")
-		pot = playerTwo.chips + pot;
-		playerTwo.money = pot;
+		pot = playerTwo.getMoney + pot;
+		playerTwo.setMoney = pot;
 	}
 
 	else
 	{
 		alert("TIe!")
-		var half = pot / 2;
+		var half = pot/2;
 
+		console.log(half)
 
-		playerOne.money = half + playerOne.chips;
-		playerTwo.money = half + playerTwo.chips;
+		playerOne.setMoney = (half + playerOne.getMoney);
+		playerTwo.setMoney = (half + playerTwo.getMoney);
 
 	}
 
-	$('#pmon').text(playerOne.chips);
-	$('#omon').text(playerTwo.chips);
+	$('#pmon').text(playerOne.getMoney);
+	$('#omon').text(playerTwo.getMoney);
 	$('#pot').text(0);
 
-	
+
 }

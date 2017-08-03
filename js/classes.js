@@ -3,15 +3,15 @@ class Player {
 		this.hand = hand;
 		this.money = money;
 	}
-	get chips() {
+	get getMoney() {
     return this.money;
   }
 
-	get card() {
+	get getHand() {
     return this.hand;
   }
 
-	set cash(newMoney) {
+	set setMoney(newMoney) {
 			 this.money = newMoney;
 	 }
 

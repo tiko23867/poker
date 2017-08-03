@@ -72,8 +72,8 @@ function makePlayers(cards)
 function set(players, image)
 {
 
-	var p = parseInt(players[0].money);
-	var o = parseInt(players[1].money);
+	var p = parseInt(players[0].getMoney);
+	var o = parseInt(players[1].getMoney);
 
 	$('#pmon').text(p);
 	$('#omon').text(o);
