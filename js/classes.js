@@ -8,7 +8,11 @@ class Player {
   }
 
 	get card() {
-    return this.hand[0];
+    return this.hand;
   }
+
+	set cash(newMoney) {
+			 this.money = newMoney;
+	 }
 
 }

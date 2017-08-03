@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
 
-  <title>The HTML5 Herald</title>
+  <title>Poker</title>
   <meta name="description" content="The HTML5 Herald">
   <meta name="author" content="SitePoint">
 
@@ -22,17 +22,18 @@
   <script src="js/jquery-1.7.2.min.js"></script>
 	<script src="js/Hammer.min.js"></script>
 	<script type="text/javascript" src="js/materialize.min.js"></script>
-	<script src="js/scripts.js"></script>
+	<script src="js/setup.js"></script>
 	<script src="js/classes.js"></script>
+	<script src="js/game.js"></script>
 
 
-	<h1>Welcome to Poker</h1>
+	<h1 class="title">Welcome to Poker</h1>
 
 	<div class="container">
 		<div class="row">
-			<img class="card" id="op1" src=""></img>
-			<img class="card" id="op2" src=""></img>
-			<div id="omon"></div>
+			<img class="" id="op1" src=""></img>
+			<img class="" id="op2" src=""></img>
+			<div class="money" id="omon"></div>
 		</div>
 	</div>
 
@@ -43,15 +44,15 @@
 			<img class="" id="mid3" src=""></img>
 			<img class="" id="mid4" src=""></img>
 			<img class="" id="mid5" src=""></img>
-			<div id="pot"></div>
+			<div class="money" id="pot"></div>
 		</div>
 	</div>
 
 	<div class="container">
 		<div class="row">
-			<img class="card" id="poke1" src=""></img>
-			<img class="card" id="poke2" src=""></img>
-			<div id="pmon"></div>
+			<img class="" id="poke1" src=""></img>
+			<img class="" id="poke2" src=""></img>
+			<div class="money" id="pmon"></div>
 		</div>
 	</div>
 
@@ -59,7 +60,7 @@
 		<div class="row">
 			<button id="flop" onclick="flop()">flop</button>
 			<button id="bet" onclick="bet()">bet</button>
-			<button id="rl" onclick="shuffle()">Shuffle</button>
+			<button id="rl" onclick="restart()">Restart</button>
 		</div>
 </div>
 

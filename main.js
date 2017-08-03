@@ -22,6 +22,8 @@ function createWindow () {
     slashes: true
   }))
 
+	mainWindow.setMinimumSize(350,500)
+
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
 

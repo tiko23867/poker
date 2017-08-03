@@ -1,8 +1,18 @@
 body {
 		text-align: center;
+		background-image: url("../pic/felt.jpg");
 		margin: 0;
 		flex-direction: column;
 		justify-content: space-between;
+}
+
+.title {
+		color: silver;
+		border: 2px solid black;
+}
+
+.money {
+		color: pink;
 }
 
 .card {
