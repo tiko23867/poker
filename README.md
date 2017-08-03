@@ -17,6 +17,16 @@ This README would normally document whatever steps are necessary to get your app
 * How to run tests
 * Deployment instructions
 
+# for use in npm scripts 
+npm install electron-packager --save-dev
+ 
+# for use from cli 
+npm install electron-packager -g
+
+# To stop people from editting app
+npm install -g asar
+
+
 ### Contribution guidelines ###
 
 * Writing tests
