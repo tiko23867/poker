@@ -15,4 +15,8 @@ class Player {
 			 this.money = newMoney;
 	 }
 
+	 set setHand(newHand) {
+		 this.hand = newHand;
+	 }
+
 }

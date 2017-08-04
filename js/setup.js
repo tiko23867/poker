@@ -1,17 +1,24 @@
-window.onload = function() {
-	shuff();
-	getCards()
-};
-
-function restart()
-{
-	location.reload()
-}
-
 //Global Vars
 var cards = [];
 var playerOne;
 var playerTwo;
+
+window.onload = function() {
+	shuff();
+	getCards();
+
+};
+
+function restart()
+{
+	location.reload();
+}
+
+function newGame()
+{
+	shuff();
+	getCards();
+}
 
 
 function shuff()
@@ -19,69 +26,71 @@ function shuff()
 	$.ajax({
 			url: 'https://deckofcardsapi.com/api/deck/'+ 'cg7faq3ikib5' + '/shuffle/',
 			success: function (resp) {
+				for (var i = 1; i < 6; i++)
+				{
+					$('#mid' + i).remove();
+				}
 			},
 			error: function () {}
 		});
 }
 
-function getCards(callback) {
+function getCards() {
 
-    myFunction(function(d) {
+		$.ajax({
+				url: 'https://deckofcardsapi.com/api/deck/'+ 'cg7faq3ikib5' + '/draw/?count=4',
+				success: function (resp) {
+					cards = resp.cards;
+					if (playerOne || playerTwo)
+						makePlayers();
 
-			var img = [];
-			for (var i = 0; i < d.cards.length; i++)
-			{
-				img.push(d.cards[i].image);
-			}
+					else
+						makePlayers(1000);
 
-			set(makePlayers(d.cards), img);
+					setTable()
+				},
+				error: function () {}
+		});
 
-    });
 }
 
-function myFunction(callback) {
-    var data;
-    $.ajax({
-      	url: 'https://deckofcardsapi.com/api/deck/'+ 'cg7faq3ikib5' + '/draw/?count=4',
-        success: function (resp) {
-        	data = resp;
-          callback(data);
-        },
-        error: function () {}
-    });
-}
 
-function makePlayers(cards)
+function makePlayers(money)
 {
-	var Cp1 = [cards[0],cards[1]];
-	var Cp2 = [cards[2],cards[3]];
+	money = money || false;
 
-	var p1 = new Player(Cp1, 1000);
-	var p2 = new Player(Cp2, 1000);
+	if (money !== false)
+	{
+		var Cp1 = [cards[0],cards[1]];
+		var Cp2 = [cards[2],cards[3]];
 
-	playerOne = p1;
-	playerTwo = p2;
+		playerOne = new Player(Cp1, money);
+		playerTwo = new Player(Cp2, money);
 
-	var players = [p1, p2];
+	}
 
-	return players;
+	else
+	{
+		playerOne.setHand = [cards[0], cards[1]];
+		playerTwo.setHand = [cards[2], cards[3]];
+	}
+
+
+
 }
 
-
-
-function set(players, image)
+function setTable()
 {
-
-	var p = parseInt(players[0].getMoney);
-	var o = parseInt(players[1].getMoney);
+	var p = parseInt(playerOne.getMoney);
+	var o = parseInt(playerTwo.getMoney);
 
 	$('#pmon').text(p);
 	$('#omon').text(o);
 
-	$('#poke1').attr('src', image[0]);
-	$('#poke2').attr('src', image[1]);
+	$('#poke1').attr('src', cards[0].image);
+	$('#poke2').attr('src', cards[1].image);
 
-	$('#op1').attr('src', image[2]);
-	$('#op2').attr('src', image[3]);
+	$('#op1').attr('src', cards[2].image);
+	$('#op2').attr('src', cards[3].image);
 
 }
