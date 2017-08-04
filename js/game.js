@@ -122,5 +122,7 @@ var audio = new Audio("audio/yook.mp3");
 	$('#omon').text(playerTwo.getMoney);
 	$('#pot').text(0);
 
+	$("#flop").attr("onclick",'alert("Restart The Game")');
+
 
 }
