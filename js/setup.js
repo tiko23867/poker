@@ -18,14 +18,20 @@ function newGame()
 {
 	shuff();
 	getCards();
+	$("#flop").attr("onclick",'flop()');
+	$("#flop").html('Flop');
+	$("#bet").attr("onclick",'bet()');
+
 }
 
+var mid = 1;
 
 function shuff()
 {
 	$.ajax({
 			url: 'https://deckofcardsapi.com/api/deck/'+ 'cg7faq3ikib5' + '/shuffle/',
 			success: function (resp) {
+				mid = 1;
 				for (var i = 1; i < 6; i++)
 				{
 					$('#mid' + i).remove();

@@ -2,8 +2,6 @@
 
 function bet()
 {
-	//var player = +($('#pmon').text());
-
 	var pMon = playerOne.getMoney;
 	var oMon = playerTwo.getMoney;
 	if (pMon <= 0 || oMon <= 0)
@@ -39,16 +37,12 @@ function bet()
 }
 
 
-var mid = 1;
 var shakes = ["shake", "shake-little", "shake-slow", "shake-hard", "shake-horizontal",
 "shake-vertical", "shake-rotate", "shake-opacity", "shake-crazy", "shake-chunk"]
 
 
 function flop()
 {
-	var audio = new Audio("audio/sans.mp3");
-	//saudio.play();
-
 	$.ajax({
 	 url: 'https://deckofcardsapi.com/api/deck/'+ 'cg7faq3ikib5' + '/draw/?count=1',
 		type:"get",
@@ -65,9 +59,17 @@ function flop()
 			})
 		});
 
-		if (mid === 5)
-		end();
+		if (mid === 3)
+			$("#flop").html('Turn');
 
+		if (mid === 4)
+			$("#flop").html('River');
+
+		if (mid === 5)
+		{
+			$("#flop").attr("onclick",'end()');
+			$("#flop").html('See Who Won');
+		}
 }
 
 
@@ -75,8 +77,6 @@ function end()
 {
 var pionts_playerOne = 0;
 var pionts_playerTwo = 0;
-var audio = new Audio("audio/yook.mp3");
-//audio.play();
 
 	for (var i = 0; i < cards.length; i++)
 	{
@@ -118,11 +118,23 @@ var audio = new Audio("audio/yook.mp3");
 
 	}
 
+	if (playerOne.getMoney <= 0 || playerTwo.getMoney <= 0)
+	{
+		$("#ng").attr("onclick",'alert("Restart The Game")');
+
+		if (playerOne.getMoney <= 0)
+			alert("You lose");
+
+		else
+		 	alert("You win");
+
+	}
+
 	$('#pmon').text(playerOne.getMoney);
 	$('#omon').text(playerTwo.getMoney);
 	$('#pot').text(0);
 
-	$("#flop").attr("onclick",'alert("Restart The Game")');
-
+	$("#flop").attr("onclick",'alert("Click New Game")');
+	$("#bet").attr("onclick",'alert("Restart The Game")');
 
 }
