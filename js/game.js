@@ -1,13 +1,33 @@
+
+
 function bet()
 {
 	//var player = +($('#pmon').text());
+
 	var pMon = playerOne.getMoney;
 	var oMon = playerTwo.getMoney;
+	if (pMon <= 0 || oMon <= 0)
+	return;
+
+	var howMuch = +($('#howmuch').val());
+
+
+	if (/^[0-9]+$/.test(howMuch) === false) {
+		Materialize.toast('Use only numbers', 4000);
+		return;
+	}
+
+	if (pMon - howMuch < 0 || oMon - howMuch < 0)
+	{
+		Materialize.toast('You do not have that much muns', 4000);
+		return;
+	}
+
 	var pot = +($('#pot').text());
 
-	pMon -= 100;
-	oMon -= 100;
-	pot += 200;
+	pMon -= howMuch
+	oMon -= howMuch;
+	pot += (howMuch * 2);
 
 	$('#pmon').text(pMon);
 	$('#omon').text(oMon);
@@ -20,7 +40,8 @@ function bet()
 
 
 var mid = 1;
-var shakes = ["shake", "shake-little", "shake-slow", "shake-hard", "shake-horizontal", "shake-vertical", "shake-rotate", "shake-opacity", "shake-crazy", "shake-chunk"]
+var shakes = ["shake", "shake-little", "shake-slow", "shake-hard", "shake-horizontal",
+"shake-vertical", "shake-rotate", "shake-opacity", "shake-crazy", "shake-chunk"]
 
 
 function flop()

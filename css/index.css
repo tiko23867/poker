@@ -18,3 +18,18 @@ body {
 .card {
 		height: 250px;
 }
+
+#betC {
+		border: 1px solid black;
+		background: linear-gradient(red, yellow);
+}
+
+textarea {
+		border: 1px solid black;
+		background: black;
+		color: pink;
+}
+
+button:hover {
+		background: linear-gradient(black, silver);
+}

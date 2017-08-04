@@ -41,12 +41,6 @@
 
 	<div class="container">
 		<div class="row">
-			<!--
-			<img class="shake" id="mid1" src=""></img>
-			<img class="shake-hard" id="mid2" src=""></img>
-			<img class="shake-slow" id="mid3" src=""></img>
-			<img class="shake-horizontal" id="mid4" src=""></img>
-			<img class="shake-rotate" id="mid5" src=""></img>-->
 			<div class="money" id="pot"></div>
 		</div>
 	</div>
@@ -61,11 +55,18 @@
 
 	<div class="container">
 		<div class="row">
-			<button id="flop" onclick="flop()">flop</button>
-			<button id="bet" onclick="bet()">bet</button>
+			<button class="col s6" id="flop" onclick="flop()">flop</button>
+			<div class="col s6"><div id="betC">Bet How much?: </div><textarea type="text" id="howmuch"></textarea>
+			<button id="bet" onclick="bet()">bet</button></div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="row">
 			<button id="rl" onclick="restart()">Restart</button>
 		</div>
-</div>
+	</div>
+
 
 </body>
 </html>
