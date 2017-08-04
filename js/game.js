@@ -20,14 +20,25 @@ function bet()
 
 
 var mid = 1;
+var shakes = ["shake", "shake-little", "shake-slow", "shake-hard", "shake-horizontal", "shake-vertical", "shake-rotate", "shake-opacity", "shake-crazy", "shake-chunk"]
+
 
 function flop()
 {
+	var audio = new Audio("audio/sans.mp3");
+	//saudio.play();
+
 	$.ajax({
 	 url: 'https://deckofcardsapi.com/api/deck/'+ 'cg7faq3ikib5' + '/draw/?count=1',
 		type:"get",
 		success: (function(data){
+			//add card to index.html
+			var id = "mid";
+			id += mid;
+			var txt1 = '<img id=' + id + ' src=""></img>';
+			$( txt1 ).insertBefore( "#pot" );
 			$('#mid' + mid).attr('src', data.cards[0].image);
+			$('#mid' + mid).attr('class', shakes[Math.floor(Math.random() * shakes.length) + 0]);
 			cards.push(data.cards[0]);
 			mid++;
 			})
@@ -43,6 +54,8 @@ function end()
 {
 var pionts_playerOne = 0;
 var pionts_playerTwo = 0;
+var audio = new Audio("audio/yook.mp3");
+//audio.play();
 
 	for (var i = 0; i < cards.length; i++)
 	{
@@ -78,8 +91,6 @@ var pionts_playerTwo = 0;
 	{
 		alert("TIe!")
 		var half = pot/2;
-
-		console.log(half)
 
 		playerOne.setMoney = (half + playerOne.getMoney);
 		playerTwo.setMoney = (half + playerTwo.getMoney);
