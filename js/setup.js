@@ -96,7 +96,8 @@ function setTable()
 	$('#poke1').attr('src', cards[0].image);
 	$('#poke2').attr('src', cards[1].image);
 
-	$('#op1').attr('src', cards[2].image);
-	$('#op2').attr('src', cards[3].image);
+//	$('#op1').attr('src', cards[2].image);
+	$('#op1').attr('src', "pic/cbr.png");
+	$('#op2').attr('src', "pic/cbr.png");
 
 }
