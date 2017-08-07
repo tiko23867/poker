@@ -50,14 +50,6 @@ function createWindow () {
 
 	tray.on('click', function(event) {
 		mainWindow.webContents.executeJavaScript('flop()')
-
-
-			mainWindow.webContents.executeJavaScript('playerOne.money')
-		  .then((result) => {
-		    console.log(result) // Will be the JSON object from the fetch call
-		  })
-
-
   	})
 
 
@@ -69,10 +61,16 @@ function createWindow () {
 						label: 'Flomp',
 						click: () => {
 								mainWindow.webContents.executeJavaScript('flop()');
-						}
+						},
+						accelerator: 'CmdOrCtrl+F',
 				},
 	      {type: 'separator'},
-	      {role: 'copy'},
+				{
+						label: 'BET',
+						click: () => {
+								mainWindow.webContents.executeJavaScript('bet()');
+						}
+				},
 	      {role: 'paste'},
 	    ]
 	  },
