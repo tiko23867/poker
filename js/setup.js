@@ -4,6 +4,7 @@ var playerOne;
 var playerTwo;
 
 window.onload = function() {
+	getId();
 	shuff();
 	getCards();
 
@@ -24,12 +25,32 @@ function newGame()
 
 }
 
+function getId()
+{
+	var checkId = Cookies.get('deckId');
+	console.log(checkId)
+	if(checkId === undefined )
+	{
+
+		$.ajax({
+				url: 'https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1',
+				success: function (resp) {
+					Cookies.set('deckId', resp['deck_id']);
+					console.log(Cookies.get('deckId'));
+				},
+				error: function () {}
+			});
+
+	}
+
+}
+
 var mid = 1;
 
 function shuff()
 {
 	$.ajax({
-			url: 'https://deckofcardsapi.com/api/deck/'+ 'cg7faq3ikib5' + '/shuffle/',
+			url: 'https://deckofcardsapi.com/api/deck/'+ Cookies.get('deckId') + '/shuffle/',
 			success: function (resp) {
 				mid = 1;
 				for (var i = 1; i < 6; i++)
@@ -44,7 +65,7 @@ function shuff()
 function getCards() {
 
 		$.ajax({
-				url: 'https://deckofcardsapi.com/api/deck/'+ 'cg7faq3ikib5' + '/draw/?count=4',
+				url: 'https://deckofcardsapi.com/api/deck/'+ Cookies.get('deckId') + '/draw/?count=4',
 				success: function (resp) {
 					cards = resp.cards;
 					if (playerOne || playerTwo)
