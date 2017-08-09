@@ -1,6 +1,10 @@
 const electron = require('electron')
 const {app, Menu, webContents, Tray} = require('electron')
 const BrowserWindow = electron.BrowserWindow
+const ElectronCookies = require('@exponent/electron-cookies');
+
+// Asynchronous read
+
 
 const path = require('path')
 const url = require('url')
@@ -8,7 +12,8 @@ const url = require('url')
 const assetsDir = path.join(__dirname, 'pic')
 
 let mainWindow
-let win = undefined
+
+//ElectronCookies.enable(file:'extra/file.txt');
 
 
 function createWindow () {
@@ -30,8 +35,6 @@ function createWindow () {
 
 	mainWindow.webContents.openDevTools();
 
-	//mainWindow.webContents.insertText("OH MY GOD IM ON FIRE");
-
 
 	mainWindow.webContents.on('did-finish-load', function(){
 		mainWindow.webContents.insertCSS('body {-webkit-app-region: drag !important}')
@@ -50,14 +53,6 @@ function createWindow () {
 
 	tray.on('click', function(event) {
 		mainWindow.webContents.executeJavaScript('flop()')
-
-
-			mainWindow.webContents.executeJavaScript('playerOne.money')
-		  .then((result) => {
-		    console.log(result) // Will be the JSON object from the fetch call
-		  })
-
-
   	})
 
 
@@ -69,10 +64,16 @@ function createWindow () {
 						label: 'Flomp',
 						click: () => {
 								mainWindow.webContents.executeJavaScript('flop()');
-						}
+						},
+						accelerator: 'CmdOrCtrl+F',
 				},
 	      {type: 'separator'},
-	      {role: 'copy'},
+				{
+						label: 'BET',
+						click: () => {
+								mainWindow.webContents.executeJavaScript('bet()');
+						}
+				},
 	      {role: 'paste'},
 	    ]
 	  },
