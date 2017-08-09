@@ -1,14 +1,18 @@
+const fs = require("fs");
+var path = require('path');
+var p = path.join(__dirname, 'extra/file.txt');
+
 //Global Vars
 var cards = [];
 var playerOne;
 var playerTwo;
+var deckId;
 
 window.onload = function() {
 	getId();
 	shuff();
 	getCards();
-
-};
+}
 
 function restart()
 {
@@ -27,21 +31,44 @@ function newGame()
 
 function getId()
 {
-	var checkId = Cookies.get('deckId');
-	console.log(checkId)
-	if(checkId === undefined )
-	{
+	fs.readFile(p, 'utf8', function (err, data) {
+  if (err) return console.log(err);
+	deckId = data;
 
-		$.ajax({
-				url: 'https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1',
-				success: function (resp) {
-					Cookies.set('deckId', resp['deck_id']);
-					console.log(Cookies.get('deckId'));
-				},
-				error: function () {}
+		if (data.length === 0)
+		{
+			$.ajax({
+					url: 'https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1',
+					success: function (resp)
+					{
+						//Cookies.set('deckId', resp['deck_id']);
+						fs.writeFile(p, resp['deck_id'], (err) =>
+						{
+						    if (err)
+								{
+						        alert("An error ocurred updating the file" + err.message);
+						        console.log(err);
+						        return;
+						    }
+
+						  //  alert("The file has been succesfully saved");
+						});
+					}
 			});
 
-	}
+			//Get the new id
+				fs.readFile(p, 'utf8', function (err, data)
+				{
+			  	if (err) return console.log(err);
+
+					else
+					deckId = data;
+				})
+
+		}
+
+
+	});
 
 }
 
@@ -49,35 +76,49 @@ var mid = 1;
 
 function shuff()
 {
-	$.ajax({
-			url: 'https://deckofcardsapi.com/api/deck/'+ Cookies.get('deckId') + '/shuffle/',
-			success: function (resp) {
-				mid = 1;
-				for (var i = 1; i < 6; i++)
-				{
-					$('#mid' + i).remove();
-				}
-			},
-			error: function () {}
-		});
-}
 
-function getCards() {
+	fs.readFile(p, 'utf8', function (err, data)
+	{
+			if (err) return console.log(err);
+			deckId = data;
+
 
 		$.ajax({
-				url: 'https://deckofcardsapi.com/api/deck/'+ Cookies.get('deckId') + '/draw/?count=4',
+				url: 'https://deckofcardsapi.com/api/deck/' + deckId + '/shuffle/',
 				success: function (resp) {
-					cards = resp.cards;
-					if (playerOne || playerTwo)
-						makePlayers();
-
-					else
-						makePlayers(1000);
-
-					setTable()
+					mid = 1;
+					for (var i = 1; i < 6; i++)
+					{
+						$('#mid' + i).remove();
+					}
 				},
 				error: function () {}
-		});
+			});
+	});
+}
+
+function getCards()
+{
+	fs.readFile(p, 'utf8', function (err, data)
+	{
+			if (err) return console.log(err);
+			deckId = data;
+
+			$.ajax({
+					url: 'https://deckofcardsapi.com/api/deck/'+ deckId + '/draw/?count=4',
+					success: function (resp) {
+						cards = resp.cards;
+						if (playerOne || playerTwo)
+							makePlayers();
+
+						else
+							makePlayers(1000);
+
+						setTable()
+					},
+					error: function () {}
+			});
+	});
 
 }
 
@@ -117,7 +158,6 @@ function setTable()
 	$('#poke1').attr('src', cards[0].image);
 	$('#poke2').attr('src', cards[1].image);
 
-//	$('#op1').attr('src', cards[2].image);
 	$('#op1').attr('src', "pic/cbr.png");
 	$('#op2').attr('src', "pic/cbr.png");
 

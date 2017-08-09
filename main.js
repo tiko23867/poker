@@ -1,6 +1,10 @@
 const electron = require('electron')
 const {app, Menu, webContents, Tray} = require('electron')
 const BrowserWindow = electron.BrowserWindow
+const ElectronCookies = require('@exponent/electron-cookies');
+
+// Asynchronous read
+
 
 const path = require('path')
 const url = require('url')
@@ -8,7 +12,8 @@ const url = require('url')
 const assetsDir = path.join(__dirname, 'pic')
 
 let mainWindow
-let win = undefined
+
+//ElectronCookies.enable(file:'extra/file.txt');
 
 
 function createWindow () {
@@ -29,8 +34,6 @@ function createWindow () {
 	mainWindow.setFullScreen(false);
 
 	mainWindow.webContents.openDevTools();
-
-	//mainWindow.webContents.insertText("OH MY GOD IM ON FIRE");
 
 
 	mainWindow.webContents.on('did-finish-load', function(){

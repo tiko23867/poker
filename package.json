@@ -20,6 +20,8 @@
     "electron": "~1.6.2"
   },
   "dependencies": {
+    "@exponent/electron-cookies": "^2.0.0",
+    "fs": "0.0.1-security",
     "js-cookie": "^2.1.4"
   }
 }
