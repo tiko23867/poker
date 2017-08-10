@@ -1,0 +1,54 @@
+body {
+		text-align: center;
+		background-image: url("../pic/felt.jpg");
+		margin: 0;
+		flex-direction: column;
+		justify-content: space-between;
+		overflow-x: hidden;
+}
+
+.title {
+		color: silver;
+		border: 2px solid black;
+}
+
+.money {
+		color: pink;
+}
+
+.card {
+		width: 20%;
+		height: 25%;
+		border-radius: 20px;
+		animation: cardMove .5s;
+		animation-iteration-count: 1;
+}
+
+.opponent{
+	width: 20%;
+	height: 25%;
+}
+
+@keyframes cardMove {
+		from {
+				left: 100%;
+		}
+		to {
+				left: 0;
+		}
+}
+
+#betC {
+		border: 1px solid black;
+		background: linear-gradient(red, yellow);
+}
+
+textarea {
+		border: 1px solid black;
+		background: black;
+		color: pink;
+}
+
+button:hover {
+		background: linear-gradient(black, silver);
+}
