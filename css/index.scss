@@ -29,12 +29,15 @@ body {
 		box-shadow: 5px 5px 5px black;
 	}
 
-
-
 .opponent{
 	width: 20%;
 	height: 25%;
+	border-radius: 10%;
 }
+	.opponent:hover{
+		animation: shake .5s infinite;
+		box-shadow: 5px 5px 5px black;
+	}
 
 @keyframes cardMove {
 		from {
