@@ -3,6 +3,8 @@ class Player {
 		this.hand = hand;
 		this.money = money;
 		this.highC = 0;
+		this.secondC = 0;
+		this.thirdC = 0;
 		this.score = 0;
 	}
 	get getMoney() {
@@ -23,24 +25,42 @@ class Player {
 
 
 	 set setHighestCard(cards) {
-		 var high;
-		 var h1 = this.hand[0].value;
-		 var h2 = this.hand[1].value;
+		 var h1 = this.hand[0];
+		 var h2 = this.hand[1];
 
-		 h1 = h1 === "JACK" ? 11 :
-		 			h1 === "QUEEN" ? 12 :
-					h1 === "KING" ? 13 :
-					h1 === "ACE" ? 14 :
-					h1
+		 var holder = cards;
+		 holder.push(h1);
+		 holder.push(h2);
 
-		 h2 = h2 === "JACK" ? 11 :
- 		 			h2 === "QUEEN" ? 12 :
- 					h2 === "KING" ? 13 :
- 					h2 === "ACE" ? 14 :
- 					h2
+/*
+		 holder.sort();
+		 holder.pop();
+		 holder.pop();
+*/
+
+		 var value = [];
+		 for (var i = 0; i < holder.length; i++)
+		 {
+			 value.push(holder[i].value);
+
+			 value[i] = value[i] === "JACK" ? 11 :
+			 			value[i] === "QUEEN" ? 12 :
+						value[i] === "KING" ? 13 :
+						value[i] === "ACE" ? 14 :
+						value[i]
+		 }
+
+		 value.sort(function(a, b){return b - a});
+
+		console.log("Sorted value " + value);
 
 
+		 this.highC = value[0];
+		 this.secondC = value[1];
+		 this.thirdC = value[2];
 
+
+/*
 		 switch (h1 > h2) {
 			 case true:
 			 		high = h1;
@@ -59,6 +79,8 @@ class Player {
 			 }
 
 			this.highC = high;
+*/
+
 
 		 }
 

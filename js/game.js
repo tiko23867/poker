@@ -56,7 +56,6 @@ function flop()
 				var txt1 = '<img id=' + id + ' src=""></img>';
 				$( txt1 ).insertBefore( "#pot" );
 				$('#mid' + mid).attr('src', data.cards[0].image);
-				$('#mid' + mid).attr('class', shakes[Math.floor(Math.random() * shakes.length) + 0]);
 				$('#mid' + mid).addClass("card");
 				cards.push(data.cards[0]);
 				mid++;
@@ -105,16 +104,16 @@ function end()
 	//It is a tie so compares the highest card
 	else
 	{
-		if (playerOne.highest > playerTwo.highest)
+		if (playerOne.highestCard > playerTwo.highestCard)
 		{
-			alert("Player 1 won!");
+			alert("Player 1 won with a " + playerOne.highestCard + " kicker");
 			pot = playerOne.getMoney + pot;
 			playerOne.setMoney = pot;
 		}
 
-		else if (playerOne.highest < playerTwo.highest)
+		else if (playerOne.highestCard < playerTwo.highestCard)
 		{
-			alert("Player 2 won!");
+			alert("Player 2 won with a " + playerTwo.highestCard + " kicker");
 			pot = playerTwo.getMoney + pot;
 			playerTwo.setMoney = pot;
 		}
@@ -140,6 +139,12 @@ function end()
 		 	alert("You win");
 
 	}
+
+	console.log("Player One's pionts " + playerOne.score);
+	console.log("Player One's Highest card " + playerOne.highestCard);
+
+	console.log("Player Two's pionts " + playerTwo.score);
+	console.log("Player Two's Highest card " + playerTwo.highestCard);
 
 	$('#pmon').text(playerOne.getMoney);
 	$('#omon').text(playerTwo.getMoney);
