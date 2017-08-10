@@ -74,54 +74,15 @@ function flop()
 
 function end()
 {
+	playerOne.setDeck = cards;
 	playerOne.setScore = cards;
-	playerOne.setHighestCard = cards;
 
+	playerTwo.setDeck = cards;
 	playerTwo.setScore = cards;
-	playerTwo.setHighestCard = cards;
 
 	var pot = +($('#pot').text());
 
-	if (playerOne.getScore > playerTwo.getScore)
-	{
-		alert("Player 1 wins!")
-		pot = playerOne.getMoney + pot;
-		playerOne.setMoney = pot;
-	}
-
-	else if (playerOne.getScore < playerTwo.getScore)
-	{
-		alert("Player 2 wins!")
-		pot = playerTwo.getMoney + pot;
-		playerTwo.setMoney = pot;
-	}
-
-	//It is a tie so compares the highest card
-	else
-	{
-		if (playerOne.highestCard > playerTwo.highestCard)
-		{
-			alert("Player 1 won with a " + playerOne.highestCard + " kicker");
-			pot = playerOne.getMoney + pot;
-			playerOne.setMoney = pot;
-		}
-
-		else if (playerOne.highestCard < playerTwo.highestCard)
-		{
-			alert("Player 2 won with a " + playerTwo.highestCard + " kicker");
-			pot = playerTwo.getMoney + pot;
-			playerTwo.setMoney = pot;
-		}
-
-		else
-		{
-			alert("TIE!");
-			var half = pot/2;
-			playerOne.setMoney = (half + playerOne.getMoney);
-			playerTwo.setMoney = (half + playerTwo.getMoney);
-		}
-
-	}
+	whowins();
 
 	if (playerOne.getMoney <= 0 || playerTwo.getMoney <= 0)
 	{
