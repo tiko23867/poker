@@ -37,10 +37,6 @@ function bet()
 }
 
 
-var shakes = ["shake", "shake-little", "shake-slow", "shake-hard", "shake-horizontal",
-"shake-vertical", "shake-rotate", "shake-opacity", "shake-crazy", "shake-chunk"]
-
-
 function flop()
 {
 	fs.readFile(p, 'utf8', function (err, data)
@@ -53,10 +49,9 @@ function flop()
 			success: (function(data){
 				var id = "mid";
 				id += mid;
-				var txt1 = '<img id=' + id + ' src=""></img>';
+				var txt1 = '<img class="card" id=' + id + ' src=""></img>';
 				$( txt1 ).insertBefore( "#pot" );
 				$('#mid' + mid).attr('src', data.cards[0].image);
-				$('#mid' + mid).addClass("card");
 				cards.push(data.cards[0]);
 				mid++;
 				})
