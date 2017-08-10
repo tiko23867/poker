@@ -82,7 +82,7 @@ function end()
 
 	var pot = +($('#pot').text());
 
-	whowins();
+	whowins(pot);
 
 	if (playerOne.getMoney <= 0 || playerTwo.getMoney <= 0)
 	{
@@ -95,15 +95,16 @@ function end()
 		 	alert("You win");
 
 	}
-
+/*
 	console.log("Player One's pionts " + playerOne.score);
 	console.log("Player One's Highest card " + playerOne.highestCard);
 
 	console.log("Player Two's pionts " + playerTwo.score);
-	console.log("Player Two's Highest card " + playerTwo.highestCard);
+	console.log("Player Two's Highest card " + playerTwo.highestCard);*/
 
-	$('#pmon').text(playerOne.getMoney);
-	$('#omon').text(playerTwo.getMoney);
+	console.log(playerTwo.getMoney);
+	$('#pmon').text(+(playerOne.getMoney));
+	$('#omon').text(+(playerTwo.getMoney));
 	$('#pot').text(0);
 
 	$('#op1').attr('src', playerTwo.getHand[1]['image']);

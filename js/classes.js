@@ -51,7 +51,6 @@ class Player {
 		 value.pop();
 		 value.pop();
 		 this.deck = value.slice();
-		 console.log(this.deck)
 
 		 }
 
@@ -70,7 +69,6 @@ class Player {
 		 if (this.hand[0].value === this.hand[1].value)
 		 {
 		 		s++;
-				console.log("Match in hand")
 		 }
 
 		 	for (var i = 0; i < cards.length; i++)
@@ -78,20 +76,6 @@ class Player {
 		 		if (cards[i].value === this.hand[0].value || cards[i].value === this.hand[1].value)
 		 		{
 		 			s++;
-
-					if (this.highC === cards[i])
-					{
-						if (this.secondC !== null)
-						{
-							this.highC = this.secondC;
-							this.secondC = null;
-						}
-
-						else
-						{
-							this.highC = this.thirdC;
-						}
-					}
 				}
 		 	}
 				this.score = s;

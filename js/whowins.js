@@ -1,4 +1,4 @@
-function whowins()
+function whowins(pot)
 {
 
 		if (playerOne.getScore > playerTwo.getScore)
@@ -18,13 +18,13 @@ function whowins()
 		//It is a tie so compares the highest card
 		else
 		{
-			tie();
+			tie(pot);
 		}
 
 }
 
 var num = 0;
-function tie()
+function tie(pot)
 {
 	if (playerOne.highestCard > playerTwo.highestCard)
 	{
@@ -50,7 +50,7 @@ function tie()
 		{
 			playerOne.setHighestCard = num;
 			playerTwo.setHighestCard = num;
-			tie();
+			tie(pot);
 		}
 	}
 
