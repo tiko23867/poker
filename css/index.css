@@ -20,13 +20,12 @@ body {
 		width: 20%;
 		height: 25%;
 		border-radius: 20px;
-		animation: cardMove .5s;
 		animation-iteration-count: 1;
 }
 
-.opponent{
-	width: 20%;
-	height: 25%;
+.opponent {
+		width: 20%;
+		height: 25%;
 }
 
 @keyframes cardMove {

@@ -1,3 +1,4 @@
+//compileExpanded
 body {
 		text-align: center;
 		background-image: url("../pic/felt.jpg");
@@ -20,7 +21,7 @@ body {
 		width: 20%;
 		height: 25%;
 		border-radius: 20px;
-		animation: cardMove .5s;
+		//animation: cardMove .5s;
 		animation-iteration-count: 1;
 }
 
