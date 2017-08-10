@@ -6,7 +6,6 @@ var p = path.join(__dirname, 'extra/file.txt');
 var cards = [];
 var playerOne;
 var playerTwo;
-var deckId;
 
 window.onload = function() {
 	getId();
@@ -33,7 +32,7 @@ function getId()
 {
 	fs.readFile(p, 'utf8', function (err, data) {
   if (err) return console.log(err);
-	deckId = data;
+//	var deckId = data;
 
 		if (data.length === 0)
 		{
@@ -41,7 +40,6 @@ function getId()
 					url: 'https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1',
 					success: function (resp)
 					{
-						//Cookies.set('deckId', resp['deck_id']);
 						fs.writeFile(p, resp['deck_id'], (err) =>
 						{
 						    if (err)
@@ -56,14 +54,15 @@ function getId()
 					}
 			});
 
+/*
 			//Get the new id
 				fs.readFile(p, 'utf8', function (err, data)
 				{
 			  	if (err) return console.log(err);
 
 					else
-					deckId = data;
-				})
+					var deckId = data;
+				})*/
 
 		}
 
@@ -80,11 +79,9 @@ function shuff()
 	fs.readFile(p, 'utf8', function (err, data)
 	{
 			if (err) return console.log(err);
-			deckId = data;
-
 
 		$.ajax({
-				url: 'https://deckofcardsapi.com/api/deck/' + deckId + '/shuffle/',
+				url: 'https://deckofcardsapi.com/api/deck/' + data + '/shuffle/',
 				success: function (resp) {
 					mid = 1;
 					for (var i = 1; i < 6; i++)
@@ -102,10 +99,9 @@ function getCards()
 	fs.readFile(p, 'utf8', function (err, data)
 	{
 			if (err) return console.log(err);
-			deckId = data;
 
 			$.ajax({
-					url: 'https://deckofcardsapi.com/api/deck/'+ deckId + '/draw/?count=4',
+					url: 'https://deckofcardsapi.com/api/deck/'+ data + '/draw/?count=4',
 					success: function (resp) {
 						cards = resp.cards;
 						if (playerOne || playerTwo)
@@ -143,8 +139,6 @@ function makePlayers(money)
 		playerTwo.setHand = [cards[2], cards[3]];
 	}
 
-
-
 }
 
 function setTable()
@@ -160,5 +154,6 @@ function setTable()
 
 	$('#op1').attr('src', "pic/cbr.png");
 	$('#op2').attr('src', "pic/cbr.png");
+	cards = [];
 
 }

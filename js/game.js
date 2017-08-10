@@ -37,29 +37,21 @@ function bet()
 }
 
 
-var shakes = ["shake", "shake-little", "shake-slow", "shake-hard", "shake-horizontal",
-"shake-vertical", "shake-rotate", "shake-opacity", "shake-crazy", "shake-chunk"]
-
-
 function flop()
 {
 	fs.readFile(p, 'utf8', function (err, data)
 	{
 			if (err) return console.log(err);
-			deckId = data;
-			console.log(deckId)
 
 		$.ajax({
-		 url: 'https://deckofcardsapi.com/api/deck/'+ deckId + '/draw/?count=1',
+		 url: 'https://deckofcardsapi.com/api/deck/'+ data + '/draw/?count=1',
 			type:"get",
 			success: (function(data){
 				var id = "mid";
 				id += mid;
-				var txt1 = '<img id=' + id + ' src=""></img>';
+				var txt1 = '<img class="card" id=' + id + ' src=""></img>';
 				$( txt1 ).insertBefore( "#pot" );
 				$('#mid' + mid).attr('src', data.cards[0].image);
-				$('#mid' + mid).attr('class', shakes[Math.floor(Math.random() * shakes.length) + 0]);
-				$('#mid' + mid).addClass("card");
 				cards.push(data.cards[0]);
 				mid++;
 				})
@@ -82,96 +74,15 @@ function flop()
 
 function end()
 {
-var pionts_playerOne = 0;
-var pionts_playerTwo = 0;
-var p1HighestCard = null;
-var p2HighestCard = null;
+	playerOne.setDeck = cards;
+	playerOne.setScore = cards;
 
-if (playerOne.hand[0].value === playerOne.hand[1].value)
-	pionts_playerOne++;
-
-if (playerTwo.hand[0].value === playerTwo.hand[1].value)
-	pionts_playerTwo++;
-
-playerOne.setScore = cards;
-
-console.log(playerOne);
-pionts_playerOne += playerOne.getScore;
-
-/*
-	for (var i = 0; i < cards.length; i++)
-	{
-		if (cards[i].value === playerOne.hand[0].value || cards[i].value === playerOne.hand[1].value)
-		{
-			pionts_playerOne++;
-			if (p1HighestCard === null)
-				p1HighestCard = playerOne.highestCard;
-
-
-			else
-			{
-				if (cards[i].value > p1HighestCard)
-					p1HighestCard = cards[i].value;
-			}
-		}
-
-		if (cards[i].value === playerTwo.hand[0].value || cards[i].value === playerTwo.hand[1].value)
-		{
-			pionts_playerTwo++;
-			if (p2HighestCard === null)
-				p1HighestCard = playerTwo.highestCard;
-
-			else
-			{
-				if (cards[i].value > p2HighestCard)
-					p2HighestCard = cards[i].value;
-			}
-		}
-
-	}*/
+	playerTwo.setDeck = cards;
+	playerTwo.setScore = cards;
 
 	var pot = +($('#pot').text());
 
-	if (pionts_playerOne > pionts_playerTwo)
-	{
-		alert("Player 1 wins!")
-		pot = playerOne.getMoney + pot;
-		playerOne.setMoney = pot;
-	}
-
-	else if (pionts_playerOne < pionts_playerTwo)
-	{
-		alert("Player 2 wins!")
-		pot = playerTwo.getMoney + pot;
-		playerTwo.setMoney = pot;
-	}
-
-	else
-	{
-		if (p1HighestCard > p2HighestCard)
-		{
-			alert("Player 1 won!");
-			pot = playerOne.getMoney + pot;
-			playerOne.setMoney = pot;
-		}
-
-		else if (p1HighestCard < p2HighestCard)
-		{
-			alert("Player 2 won!");
-			pot = playerTwo.getMoney + pot;
-			playerTwo.setMoney = pot;
-		}
-
-		else
-		{
-			alert("TIE!");
-			var half = pot/2;
-			playerOne.setMoney = (half + playerOne.getMoney);
-			playerTwo.setMoney = (half + playerTwo.getMoney);
-		}
-
-
-	}
+	whowins(pot);
 
 	if (playerOne.getMoney <= 0 || playerTwo.getMoney <= 0)
 	{
@@ -184,9 +95,16 @@ pionts_playerOne += playerOne.getScore;
 		 	alert("You win");
 
 	}
+/*
+	console.log("Player One's pionts " + playerOne.score);
+	console.log("Player One's Highest card " + playerOne.highestCard);
 
-	$('#pmon').text(playerOne.getMoney);
-	$('#omon').text(playerTwo.getMoney);
+	console.log("Player Two's pionts " + playerTwo.score);
+	console.log("Player Two's Highest card " + playerTwo.highestCard);*/
+
+	console.log(playerTwo.getMoney);
+	$('#pmon').text(+(playerOne.getMoney));
+	$('#omon').text(+(playerTwo.getMoney));
 	$('#pot').text(0);
 
 	$('#op1').attr('src', playerTwo.getHand[1]['image']);

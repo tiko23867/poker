@@ -43,9 +43,7 @@ function createWindow () {
 	var HAAA =
 	`function myFunct()
 	{
-		alert("help me. im a string in a string. heck.");
-		flop();
-		bet();
+		alert("You've found the hidden message!");
 	}`
 
 	mainWindow.webContents.executeJavaScript(HAAA);
@@ -77,6 +75,12 @@ function createWindow () {
 	      {role: 'paste'},
 	    ]
 	  },
+		{
+			label: 'Rererestart',
+			submenu: [
+				{role: 'reload'}
+			]
+		},
 	  {
 	    role: 'help',
 	    submenu: [
