@@ -75,6 +75,12 @@ function createWindow () {
 	      {role: 'paste'},
 	    ]
 	  },
+		{
+			label: 'Rererestart',
+			submenu: [
+				{role: 'reload'}
+			]
+		},
 	  {
 	    role: 'help',
 	    submenu: [
