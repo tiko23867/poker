@@ -1,39 +1,26 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+This is some poker game. Watch out though. There are bugs crawling everywhere.
 
 ### What is this repository for? ###
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+Help me.
 
 ### How do I get set up? ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-# for use in npm scripts 
-npm install electron-packager --save-dev
- 
-# for use from cli 
-npm install electron-packager -g
-
-# To stop people from editting app
-npm install -g asar
-
+* NPM Install.
+* Drag to electron app.
 
 ### Contribution guidelines ###
 
 * Writing tests
 * Code review
-* Other guidelines
+* Please
+* Help this project Please
+* It's turing out so bad (ಥ⌣ಥ)
 
 ### Who do I talk to? ###
 
 * Repo owner or admin
 * Other community or team contact
+* Monsters at night ฅ^•ﻌ•^ฅ
