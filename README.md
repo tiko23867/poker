@@ -17,7 +17,7 @@ Help me.
 * Code review
 * Please
 * Help this project Please
-* It's turing out so bad (ಥ⌣ಥ)
+* It's turning out so bad (ಥ⌣ಥ)
 
 ### Who do I talk to? ###
 
